@@ -36,6 +36,16 @@ interface ConvState {
 // App
 // ─────────────────────────────────────────
 
+// ─────────────────────────────────────────
+// Backend URL helpers (env-aware)
+// ─────────────────────────────────────────
+
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_URL ?? 'localhost:8000';
+
+// Automatically use wss:// when served over HTTPS (e.g. on Render)
+const WS_URL   = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${BACKEND_HOST}/ws`;
+const HTTP_URL = `${window.location.protocol === 'https:' ? 'https' : 'http'}://${BACKEND_HOST}`;
+
 const App = () => {
   const [showDemo,          setShowDemo]         = useState(false);
   const [isCalling,         setIsCalling]        = useState(false);
@@ -239,7 +249,7 @@ const App = () => {
     setStatus('listening');
     setMessages([]); // fresh transcript for new call
 
-    const socket = new WebSocket('ws://localhost:8000/ws');
+    const socket = new WebSocket(WS_URL);
     wsRef.current = socket;
 
     socket.onopen = () => {
@@ -293,7 +303,7 @@ const App = () => {
   const startCampaign = async () => {
     setIsCampaignRunning(true);
     try {
-      await fetch('http://localhost:8000/api/campaign/start', { method: 'POST' });
+      await fetch(`${HTTP_URL}/api/campaign/start`, { method: 'POST' });
       setMessages(prev => [...prev, { role: 'system', text: 'Outbound campaign started — 2,402 reminder calls queued.' }]);
     } catch {
       setMessages(prev => [...prev, { role: 'system', text: 'Campaign start failed — backend unavailable.' }]);

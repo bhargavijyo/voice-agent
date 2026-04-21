@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mic, Phone, Calendar, Globe, Clock, Zap, 
@@ -228,7 +228,7 @@ const FlowSection = () => {
                className="relative z-10 flex flex-col items-center text-center group"
              >
                <div className="w-16 h-16 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 mb-6 group-hover:border-primary group-hover:text-primary group-hover:scale-110 transition-all shadow-sm">
-                  {React.cloneElement(step.icon as React.ReactElement, { className: 'w-8 h-8' })}
+               <div className="w-8 h-8">{step.icon}</div>
                </div>
                <h3 className="font-bold text-slate-800 mb-2">{step.label}</h3>
                <p className="text-xs text-slate-500 max-w-[150px]">{step.desc}</p>

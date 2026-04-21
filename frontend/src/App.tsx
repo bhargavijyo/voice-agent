@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Phone, Activity, Play, ArrowLeft, Zap } from 'lucide-react';
 import Sidebar from './components/Sidebar';

@@ -1,8 +1,7 @@
-import React from 'react';
 import { 
-  User, Shield, Zap, Globe, History, 
+  Shield, Zap, Globe, History,
   Settings, ChevronRight, LayoutDashboard,
-  Calendar, Phone, MessageSquare, Activity
+  Calendar, Activity
 } from 'lucide-react';
 
 interface SidebarProps {
